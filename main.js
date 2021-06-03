@@ -29,12 +29,19 @@ function createNewSearch() {
 };
 
 function renderResults(data) {
+    //creates <li> for each result and appends to searchResults
     let eachResult = document.createElement('li')
     eachResult.id = data.trackId
     searchResults.appendChild(eachResult)
 
+    // creates div to display artists name
     let artist = document.createElement('div')
     artist.setAttribute('id', 'artist-name')
     eachResult.appendChild(artist)
     artist.innerHTML = `${data.artistName}`
+
+    const trackName = document.createElement('div')
+    trackName.setAttribute('id', 'track-name')
+    eachResult.appendChild(trackName)
+    trackName.innerHTML = `${data.trackName}`
 }
