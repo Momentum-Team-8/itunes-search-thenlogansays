@@ -43,29 +43,32 @@ function renderResults(data) {
 
   //creates img element to display track artwork
   let trackArt = document.createElement("img");
+  trackArt.classList.add("art")
   trackArt.id = "track-image";
   eachResult.appendChild(trackArt);
-  trackArt.src = `${data.artworkUrl60}`;
+  trackArt.src = `${data.artworkUrl100}`;
 
   //creates div to display track name
   let trackName = document.createElement("div");
+  trackName.classList.add("track")
   trackName.id = "track-name";
   eachResult.appendChild(trackName);
   trackName.innerHTML = `${data.trackName}`;
 
   // creates div to display artists name
   let artist = document.createElement("div");
+  artist.classList.add("artist")
   artist.id = "artist-name";
   eachResult.appendChild(artist);
   artist.innerHTML = `${data.artistName}`;
 
-  trackName.addEventListener("click", oneTimeEvent);
+  trackArt.addEventListener("click", oneTimeEvent);
   function oneTimeEvent() {
     let audio = document.createElement("audio");
     audio.id = "audio-preview";
     audio.controls = "controls";
     audio.src = `${data.previewUrl}`;
     eachResult.appendChild(audio);
-    trackName.removeEventListener("click", oneTimeEvent);
+    trackArt.removeEventListener("click", oneTimeEvent);
   }
 }
