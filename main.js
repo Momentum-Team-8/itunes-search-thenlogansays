@@ -2,6 +2,7 @@
 
 const url = 'https://itunes.apple.com/search?'
 const form = document.getElementById('input-field')
+const container = document.querySelector('.container')
 const searchInput = document.getElementById('search-input')
 searchResults = document.getElementById('output')
 
@@ -40,6 +41,7 @@ function renderResults(data) {
     eachResult.appendChild(trackName)
     trackName.innerHTML = `${data.trackName}`
 
+    //creates img element to display track artwork
     let trackArt = document.createElement('img')
     trackArt.setAttribute('id', 'track-image')
     eachResult.appendChild(trackArt)
@@ -50,6 +52,20 @@ function renderResults(data) {
     artist.setAttribute('id', 'artist-name')
     eachResult.appendChild(artist)
     artist.innerHTML = `${data.artistName}`
+
+    // creates button to preview audio
+    let previewButton = document.createElement('button')
+    previewButton.setAttribute('id', 'preview')
+    eachResult.appendChild(previewButton)
+    previewButton.innerText = "Listen"
     
+    document.addEventListener('click', event => {
+        let audio = document.createElement('audio')
+        audio.id = 'audio-preview'
+        audio.controls = 'controls'
+        audio.src = `${data.previewUrl}`
+        eachResult.appendChild(audio)
+    })
     
 }
+
