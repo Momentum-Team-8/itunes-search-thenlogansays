@@ -1,7 +1,9 @@
 
 
 const url = 'https://itunes.apple.com/search?'
+const title = document.getElementById('title')
 const form = document.getElementById('input-field')
+const output = document.getElementById('output-field')
 const container = document.querySelector('.container')
 const searchInput = document.getElementById('search-input')
 searchResults = document.getElementById('output')
@@ -35,37 +37,39 @@ function renderResults(data) {
     eachResult.id = data.trackId
     searchResults.appendChild(eachResult)
 
-    //creates div to display track name 
-    let trackName = document.createElement('div')
-    trackName.setAttribute('id', 'track-name')
-    eachResult.appendChild(trackName)
-    trackName.innerHTML = `${data.trackName}`
-
     //creates img element to display track artwork
     let trackArt = document.createElement('img')
-    trackArt.setAttribute('id', 'track-image')
+    trackArt.id ='track-image'
     eachResult.appendChild(trackArt)
     trackArt.src = `${data.artworkUrl60}`
 
+    //creates div to display track name 
+    let trackName = document.createElement('div')
+    trackName.id = 'track-name'
+    eachResult.appendChild(trackName)
+    trackName.innerHTML = `${data.trackName}`
+
     // creates div to display artists name
     let artist = document.createElement('div')
-    artist.setAttribute('id', 'artist-name')
+    artist.id = 'artist-name'
     eachResult.appendChild(artist)
     artist.innerHTML = `${data.artistName}`
 
     // creates button to preview audio
     let previewButton = document.createElement('button')
-    previewButton.setAttribute('id', 'preview')
+    previewButton.id = 'preview'
     eachResult.appendChild(previewButton)
     previewButton.innerText = "Listen"
     
-    document.addEventListener('click', event => {
-        let audio = document.createElement('audio')
-        audio.id = 'audio-preview'
-        audio.controls = 'controls'
-        audio.src = `${data.previewUrl}`
-        eachResult.appendChild(audio)
-    })
-    
-}
 
+    previewButton.addEventListener('click', oneTimeEvent) 
+        function oneTimeEvent() {
+            let audio = document.createElement('audio')
+            audio.id = 'audio-preview'
+            audio.controls = 'controls'
+            audio.src = `${data.previewUrl}`
+            eachResult.appendChild(audio)
+            previewButton.removeEventListener('click', oneTimeEvent)
+    
+    }
+}
