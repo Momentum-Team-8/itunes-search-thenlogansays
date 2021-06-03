@@ -34,14 +34,22 @@ function renderResults(data) {
     eachResult.id = data.trackId
     searchResults.appendChild(eachResult)
 
+    //creates div to display track name 
+    let trackName = document.createElement('div')
+    trackName.setAttribute('id', 'track-name')
+    eachResult.appendChild(trackName)
+    trackName.innerHTML = `${data.trackName}`
+
+    let trackArt = document.createElement('img')
+    trackArt.setAttribute('id', 'track-image')
+    eachResult.appendChild(trackArt)
+    trackArt.src = `${data.artworkUrl60}`
+
     // creates div to display artists name
     let artist = document.createElement('div')
     artist.setAttribute('id', 'artist-name')
     eachResult.appendChild(artist)
     artist.innerHTML = `${data.artistName}`
-
-    const trackName = document.createElement('div')
-    trackName.setAttribute('id', 'track-name')
-    eachResult.appendChild(trackName)
-    trackName.innerHTML = `${data.trackName}`
+    
+    
 }
