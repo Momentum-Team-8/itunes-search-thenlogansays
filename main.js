@@ -14,6 +14,15 @@ document.addEventListener('submit', event => {
 });
 
 function createNewSearch() {
+   
+    function clearsearch() {
+        while (searchResults.firstChild) {
+            searchResults.removeChild(searchResults.firstChild);
+        }
+    }
+    clearsearch();
+    
+
     const search = searchInput.value
     //making request to the url for the search
     fetch(url + 'term=' + `${search}` + '&entity=song' + '&limit=10')
@@ -32,8 +41,15 @@ function createNewSearch() {
 };
 
 function renderResults(data) {
+    //trying to clear results targeting innerHTML
+     // function clearField() {
+    //     let removeItem = document.querySelector('.resultCard')
+    //     removeItem.innerHTML = null
+    // } 
+
     //creates <li> for each result and appends to searchResults
     let eachResult = document.createElement('li')
+    eachResult.classList.add('resultCard')
     eachResult.id = data.trackId
     searchResults.appendChild(eachResult)
 
