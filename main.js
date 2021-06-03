@@ -56,20 +56,20 @@ function renderResults(data) {
     artist.innerHTML = `${data.artistName}`
 
     // creates button to preview audio
-    let previewButton = document.createElement('button')
-    previewButton.id = 'preview'
-    eachResult.appendChild(previewButton)
-    previewButton.innerText = "Listen"
+    // let previewButton = document.createElement('button')
+    // previewButton.id = 'preview'
+    // eachResult.appendChild(previewButton)
+    // previewButton.innerText = "Listen"
     
 
-    previewButton.addEventListener('click', oneTimeEvent) 
+    trackName.addEventListener('click', oneTimeEvent) 
         function oneTimeEvent() {
             let audio = document.createElement('audio')
             audio.id = 'audio-preview'
             audio.controls = 'controls'
             audio.src = `${data.previewUrl}`
             eachResult.appendChild(audio)
-            previewButton.removeEventListener('click', oneTimeEvent)
+            trackName.removeEventListener('click', oneTimeEvent)
     
     }
 }
